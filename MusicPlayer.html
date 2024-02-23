@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .player {
+            width: 300px;
+            background-color: #202020;
+            border-radius: 15px;
+            padding: 15px;
+            color: #ffffff;
+        }
+        .player audio {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="player">
+        <h2 id="title">Your Music Title</h2>
+        <audio id="audio" controls>
+            <source id="source" src="C:\Users\Chandransh\Downloads\Zaroori Tha-(PagalWorld.Ink).mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button onclick="nextSong()">Next</button>
+    </div>
+    <script>
+        var songs = [ "Khuda Hafiz.mp3", "Song2.mp3"];
+        var title = document.getElementById("title");
+        var audio = document.getElementById("audio");
+        var source = document.getElementById("source");
+        var currentSong = 0;
+
+        function nextSong() {
+            if (currentSong === songs.length - 1) {
+                currentSong = 0;
+            } else {
+                currentSong++;
+            }
+            source.src = songs[currentSong];
+            title.textContent = songs[currentSong];
+            audio.load();
+            audio.play();
+        }
+
+        audio.addEventListener("ended", nextSong);
+    </script>
+</body>
+</html>
